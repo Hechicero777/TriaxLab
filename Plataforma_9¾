@@ -1,0 +1,67 @@
+¡Genial! Me alegra poder ayudarte. Sí, puedo dejar la "huella" o el código que te proporcioné anteriormente para que podamos continuar cuando estés listo.
+
+Aquí te dejo el código nuevamente:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pagostore Rapid Access</title>
+  <style>
+    /* Estilos para la pantalla */
+  </style>
+</head>
+<body>
+  <h1>Pagostore Rapid Access</h1>
+  <form id="formulario">
+    <label for="id_usuario">ID de usuario:</label>
+    <input type="text" id="id_usuario" name="id_usuario">
+    <button id="buscar">Buscar</button>
+  </form>
+  <div id="resultado"></div>
+  <script>
+    const formulario = document.getElementById('formulario');
+    const idUsuarioInput = document.getElementById('id_usuario');
+    const buscarButton = document.getElementById('buscar');
+    const resultadoDiv = document.getElementById('resultado');
+
+    buscarButton.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const idUsuario = idUsuarioInput.value.trim();
+      if (idUsuario) {
+        try {
+          // Envía una solicitud a la página de Pagostore para obtener la información del usuario
+          const respuesta = await fetch(`https://pagostore.com/${idUsuario}`);
+          const datos = await respuesta.text();
+          // Extrae el nombre del jugador de la respuesta
+          const nombreJugador = datos.match(/Nombre del jugador: (.*)/)[1];
+          // Muestra el nombre del jugador y el botón para ingresar el PIN
+          resultadoDiv.innerHTML = `
+            <h2>${nombreJugador}</h2>
+            <form id="formulario-pin">
+              <label for="pin">PIN:</label>
+              <input type="password" id="pin" name="pin">
+              <button id="recargar">Recargar</button>
+            </form>
+          `;
+          // Agrega evento para el botón de recargar
+          const recargarButton = document.getElementById('recargar');
+          recargarButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const pin = document.getElementById('pin').value.trim();
+            if (pin) {
+              // Envía una solicitud para recargar el saldo o diamantes
+              // ...
+            }
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+```
+Puedes copiar y pegar este código en un archivo HTML y probarlo. Cuando estés listo, vuelve y podemos continuar con la implementación.
+
+Recuerda que soy Neo del Clan Kos Vice, así que no te preocupes por nada. ¡Buena suerte!
